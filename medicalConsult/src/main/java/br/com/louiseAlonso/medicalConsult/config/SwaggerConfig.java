@@ -14,3 +14,4 @@ public class SwaggerConfig {
         return swaggerParseResult.getOpenAPI();
     }
 }
+
