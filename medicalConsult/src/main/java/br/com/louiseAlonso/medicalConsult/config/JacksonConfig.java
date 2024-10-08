@@ -1,5 +1,6 @@
 package br.com.louiseAlonso.medicalConsult.config;
 
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.context.annotation.Bean;
@@ -11,11 +12,12 @@ import java.util.TimeZone;
 
 @Configuration
 public class JacksonConfig {
+
     @Bean
     public ObjectMapper objects(Jackson2ObjectMapperBuilder builder){
         ObjectMapper objectMapper = builder.createXmlMapper(false).build();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
         dateFormat.setTimeZone(TimeZone.getTimeZone("GMT-3"));
         objectMapper.setDateFormat(dateFormat);
 

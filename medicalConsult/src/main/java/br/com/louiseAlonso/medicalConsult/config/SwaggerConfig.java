@@ -1,17 +1,19 @@
 package br.com.louiseAlonso.medicalConsult.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.parser.OpenAPIV3Parser;
-import io.swagger.v3.parser.core.models.SwaggerParseResult;
+import io.swagger.v3.oas.models.info.Info;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SwaggerConfig {
+
     @Bean
     public OpenAPI customOpenAPI() {
-        SwaggerParseResult swaggerParseResult = new OpenAPIV3Parser().readLocation("src/main/resources/swsagger.yml", null, null);
-        return swaggerParseResult.getOpenAPI();
+        return new OpenAPI()
+                .info(new Info()
+                        .title("Medical Consult API")
+                        .version("1.0.0")
+                        .description("API for managing medical consultations"));
     }
 }
-

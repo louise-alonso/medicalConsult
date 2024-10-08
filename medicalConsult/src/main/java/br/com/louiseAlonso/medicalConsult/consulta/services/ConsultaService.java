@@ -1,8 +1,7 @@
-package br.com.louiseAlonso.medicalConsult.consulta.services;
+package br.com.louiseAlonso.medicalConsult.consulta.service;
 
-
-import br.com.louiseAlonso.medicalConsult.consulta.domain.Consulta;
-import br.com.louiseAlonso.medicalConsult.consulta.repositories.ConsultaRepository;
+import br.com.louiseAlonso.medicalConsult.consulta.model.Consulta;
+import br.com.louiseAlonso.medicalConsult.consulta.repository.ConsultaRepository;
 import br.com.louiseAlonso.medicalConsult.exception.ExceptionDataIntegrityViolation;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +41,7 @@ public class ConsultaService {
     }
 
     public Consulta atualizarConsulta(Consulta consulta){
-        Consulta novaConsulta = buscarConsulta(consulta.getIdConsulta());
+        Consulta novaConsulta = buscarConsulta(Long.valueOf(consulta.getIdConsulta()));
         updateData(novaConsulta, consulta);
         return consultaRepository.save(novaConsulta);
     }
@@ -53,4 +52,3 @@ public class ConsultaService {
         novaConsulta.setEspecialidade(consulta.getEspecialidade());
     }
 }
-

@@ -3,4 +3,4 @@ spring:
     active: dev
 java:
   runtime:
-    version: '17'
+    version: '21'

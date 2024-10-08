@@ -1,4 +1,4 @@
-package br.com.louiseAlonso.medicalConsult.usuario.domain;
+package br.com.louiseAlonso.medicalConsult.usuario.models;
 
 public enum Permissao {
     ADMIN("ADMIN"),

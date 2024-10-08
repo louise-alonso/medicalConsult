@@ -1,15 +1,15 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://
     username: postgres
-    password: senha
+    url: jdbc:postgresql://
+    password: 'senha'
   jpa:
     properties:
       hibernate:
-        format_sql: true
+        format_sql: 'true'
     hibernate:
       ddl-auto: update
-      show-sql: true
-  server:
-    port: ${PORT:8080}
+    show-sql: 'true'
+server:
+  port: ${port:8080}

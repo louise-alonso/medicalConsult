@@ -1,6 +1,6 @@
-package br.com.louiseAlonso.medicalConsult.consulta.repositories;
+package br.com.louiseAlonso.medicalConsult.consulta.repository;
 
-import br.com.louiseAlonso.medicalConsult.consulta.domain.Consulta;
+import br.com.louiseAlonso.medicalConsult.consulta.model.Consulta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

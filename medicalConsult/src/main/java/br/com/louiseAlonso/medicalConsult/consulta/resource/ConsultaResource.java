@@ -1,7 +1,7 @@
 package br.com.louiseAlonso.medicalConsult.consulta.resource;
 
-import br.com.louiseAlonso.medicalConsult.consulta.domain.Consulta;
-import br.com.louiseAlonso.medicalConsult.consulta.services.ConsultaService;
+import br.com.louiseAlonso.medicalConsult.consulta.model.Consulta;
+import br.com.louiseAlonso.medicalConsult.consulta.service.ConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,34 +17,38 @@ public class ConsultaResource {
     private ConsultaService consultaService;
 
     @PostMapping
-    public ResponseEntity<Consulta> cadastrarConsulta(@RequestBody Consulta consulta) {
-
+    public ResponseEntity<Consulta> cadastrarConsulta(@RequestBody Consulta consulta){
+        // Jeito do professor
         Consulta novaConsulta = consultaService.cadastrarConsulta(consulta);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
                 .buildAndExpand(novaConsulta.getIdConsulta()).toUri();
         return ResponseEntity.created(uri).body(novaConsulta);
+
+        // Meu jeito
+//        Consulta novaConsulta = consultaService.cadastrarConsulta(consulta);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(novaConsulta);
     }
 
     @GetMapping
-    public ResponseEntity<List<Consulta>> listarConsultas() {
+    public ResponseEntity<List<Consulta>> listarUsuarios(){
         return ResponseEntity.ok().body(consultaService.listarConsultas());
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Consulta> buscarConsulta(@PathVariable Long id) {
+    public ResponseEntity<Consulta> buscarConsulta(@PathVariable Long id){
         Consulta consulta = consultaService.buscarConsulta(id);
         return ResponseEntity.ok().body(consulta);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Consulta> atualizarConsulta(@RequestBody Consulta consulta, @PathVariable Long id) {
-        consulta.setIdConsulta(id);
+    public ResponseEntity<Consulta> atualizarConsulta(@RequestBody Consulta consulta, @PathVariable Long id){
+        consulta.setIdConsulta(Math.toIntExact(id));
         Consulta consultaAtualizada = consultaService.atualizarConsulta(consulta);
         return ResponseEntity.ok().body(consultaAtualizada);
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deletarConsulta(@PathVariable Long id) {
+    public ResponseEntity<Void> deletarConsulta(@PathVariable Long id){
         consultaService.deletarConsulta(id);
         return ResponseEntity.noContent().build();
     }
