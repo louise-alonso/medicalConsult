@@ -23,20 +23,24 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
-    public Usuario atualizarUsuario(Usuario usuario) {
-        if(usuario.getIdUsuario()==null){
-            throw new RuntimeException("Usuario sem ID");
-        }
-        return usuarioRepository.save(usuario);
-    }
-
     public Usuario buscarUsuario(Long id) {
         return usuarioRepository.findById(id).orElseThrow(
-                () -> new ObjectNotFoundException("Usuário não encontrado:", id)
+                () -> new ObjectNotFoundException("Usuário não encontrado: ", id)
         );
     }
 
-    public void excluirUsuario(Long id) {
-        usuarioRepository.deleteById(id);
+    public void deletarUsuario(Long id) {
+        Usuario usuario = buscarUsuario(id);
+        usuarioRepository.delete(usuario);
+    }
+
+    public Usuario atualizarUsuario(Long id, Usuario usuario) {
+        Usuario upUsuario = buscarUsuario(id);
+        upUsuario.setNomeUsuario(usuario.getNomeUsuario());
+        upUsuario.setEmail(usuario.getEmail());
+        upUsuario.setTelefone(usuario.getTelefone());
+        upUsuario.setDataNascimento(usuario.getDataNascimento());
+        upUsuario.setPermissao(usuario.getPermissao());
+        return usuarioRepository.save(upUsuario);
     }
 }

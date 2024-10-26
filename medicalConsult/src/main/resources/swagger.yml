@@ -9,7 +9,7 @@ paths:
   /usuarios/{id}:
     get:
       tags:
-        - usuario-resource
+        - CRUD Usuario
       operationId: Buscar usuário
       parameters:
         - name: id
@@ -27,7 +27,7 @@ paths:
                 $ref: "#/components/schemas/Usuario"
     put:
       tags:
-        - usuario-resource
+        - CRUD Usuario
       operationId: atualizarCliente
       parameters:
         - name: id
@@ -51,7 +51,7 @@ paths:
                 $ref: "#/components/schemas/Usuario"
     delete:
       tags:
-        - usuario-resource
+        - CRUD Usuario
       operationId: deletarUsuario
       parameters:
         - name: id
@@ -66,7 +66,7 @@ paths:
   /consultas/{id}:
     get:
       tags:
-        - consulta-resource
+        - CRUD Consulta
       operationId: buscarConsulta
       parameters:
         - name: id
@@ -84,7 +84,7 @@ paths:
                 $ref: "#/components/schemas/Consulta"
     put:
       tags:
-        - consulta-resource
+        - CRUD Consulta
       operationId: atualizarConsulta
       parameters:
         - name: id
@@ -108,7 +108,7 @@ paths:
                 $ref: "#/components/schemas/Consulta"
     delete:
       tags:
-        - consulta-resource
+        - CRUD Consulta
       operationId: deletarConsulta
       parameters:
         - name: id
@@ -123,7 +123,7 @@ paths:
   /usuarios:
     get:
       tags:
-        - usuario-resource
+        - CRUD Usuario
       operationId: listarUsuario
       responses:
         "200":
@@ -136,7 +136,7 @@ paths:
                   $ref: "#/components/schemas/Usuario"
     post:
       tags:
-        - usuario-resource
+        - CRUD Usuario
       operationId: cadastrarUsuario
       requestBody:
         content:
@@ -154,7 +154,7 @@ paths:
   /consultas:
     get:
       tags:
-        - consulta-resource
+        - CRUD Consulta
       operationId: listarConsultas
       responses:
         "200":
@@ -167,7 +167,7 @@ paths:
                   $ref: "#/components/schemas/Consulta"
     post:
       tags:
-        - consulta-resource
+        - CRUD Consulta
       operationId: cadastrarConsulta
       requestBody:
         content:

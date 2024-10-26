@@ -12,7 +12,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "Consultas")
+@Table(name = "CONSULTAS")
 public class Consulta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +21,7 @@ public class Consulta {
     @Column(name = "DATA_CONSULTA")
     private Date dataConsulta;
     @Column(name = "PROFISSIONAL")
-    private String profissional;  // Changed from Profissional
-
+    private String profissional;
     @Column(name = "ESPECIALIDADE")
     private String especialidade;
 

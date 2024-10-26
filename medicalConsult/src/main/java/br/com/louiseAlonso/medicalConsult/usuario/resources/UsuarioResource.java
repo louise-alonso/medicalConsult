@@ -11,36 +11,38 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping(value = "/usuarios")
 public class UsuarioResource {
     @Autowired
     private UsuarioService usuarioService;
 
     @PostMapping
-    public ResponseEntity<Usuario> cadastrarUsuario(@RequestBody Usuario usuario) {
-        Usuario novoUsusario = usuarioService.cadastrarUsuario(usuario);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novoUsusario);
-    }
-    @GetMapping
-    public ResponseEntity<List<Usuario>> listarUsuarios() {
-        List<Usuario> usuarios = usuarioService.listarUsuarios();
-        return ResponseEntity.status(HttpStatus.OK).body(usuarios);
+    public ResponseEntity<Usuario> cadastrarUsuario(@RequestBody Usuario usuario){
+        Usuario novoUsuario = usuarioService.cadastrarUsuario(usuario);
+        return ResponseEntity.status(HttpStatus.CREATED).body(novoUsuario);
     }
 
-    @PutMapping
-    public Usuario atualizarUsuario(@RequestBody Usuario usuario) {
-        return usuarioService.atualizarUsuario(usuario);
+    @GetMapping
+    public ResponseEntity<List<Usuario>> listarUsuario(){
+        List<Usuario> usuarios = usuarioService.listarUsuarios();
+        return ResponseEntity.ok().body(usuarios);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> buscarUsuario(@PathVariable Long id) {
+    public ResponseEntity<Usuario> buscarUsuario(@PathVariable Long id){
         Usuario usuario = usuarioService.buscarUsuario(id);
-        return ResponseEntity.status(HttpStatus.OK).body(usuario);
+        return ResponseEntity.ok().body(usuario);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> excluirUsuario(@PathVariable Long id) {
-        usuarioService.excluirUsuario(id);
-        return ResponseEntity.ok("Usuario excluido com sucesso!");
+    public ResponseEntity<Void> deletarUsuario(@PathVariable Long id){
+        usuarioService.deletarUsuario(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Usuario> atualizarCliente(@PathVariable Long id, @RequestBody Usuario usuario){
+        Usuario upCliente = usuarioService.atualizarUsuario(id, usuario);
+        return ResponseEntity.ok().body(upCliente);
     }
 }
